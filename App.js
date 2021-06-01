@@ -1,13 +1,37 @@
 import { StatusBar } from 'expo-status-bar';
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import Home from './routes/Home';
+import Orders from './routes/Orders';
+import Categories from './routes/Categories';
+import Products from './routes/Products';
+import basemanager from './service/baseservice';
+import { ListItem, Icon } from 'react-native-elements';
+
 
 export default function App() {
+
+  const Stack = createStackNavigator();
+
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="Home" component={Home} />
+        <Stack.Screen name="Orders" component={Orders} />
+        <Stack.Screen name="Categories" component={Categories} />
+        <Stack.Screen name="Products" component={Products} />
+
+
+
+      </Stack.Navigator>
+
+
+
+
+    </NavigationContainer>
   );
 }
 
