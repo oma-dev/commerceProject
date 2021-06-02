@@ -36,7 +36,61 @@ const basemanager = {
 
         return resultdata;
 
+    },
+
+    delete: async (url, idNumber) => {
+
+
+      let bodyContent = {
+        id: idNumber
+      }
+
+      let requestOptions = {
+        method: 'DELETE',
+        body: JSON.stringify(bodyContent)
+      }
+
+      await fetch(config.apiurl + url + "/" + idNumber, requestOptions)
+        .then((res) => res.json())
+        .then((data) => {
+          console.log("Successfully deleted the data with id " + idNumber)
+      })
+
+
+    },
+
+    put: async (url, data, idNumber) => {
+
+        let resultdata;
+        let requestOptions = {
+            method: 'PUT',
+            body: JSON.stringify(data),
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        }
+
+        await fetch(config.apiurl + url + "/" + idNumber, requestOptions)
+            .then((res) => res.json())
+            .then((data) => {
+                resultdata = data;
+            });
+
+        return resultdata;
+
     }
+
+
+
+
+
+
+
+
+
+
+
 
 }
 
